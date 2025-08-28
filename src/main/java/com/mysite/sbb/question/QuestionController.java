@@ -3,7 +3,6 @@ package com.mysite.sbb.question;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.stream.Collectors;
 
@@ -14,7 +13,7 @@ public class QuestionController {
     private final QuestionRepository questionRepository;
 
     @GetMapping("/question/list")
-    @ResponseBody
+//    @ResponseBody
     public String list() {
 
         String questions = questionRepository.findAll()
@@ -22,15 +21,19 @@ public class QuestionController {
                 .map(e -> "<li)%s</li>".formatted(e.getSubject()))
                 .collect(Collectors.joining("\n"));
 
-        return """
-                <html>
-                    <body>
-                        <ul>
-                           %s
-                        </ul>
-                    </body>
-                </html>
-                """.formatted(questions);
+        System.out.println(questionRepository.findAll().size());
+
+
+        return "question_list";
+//        return """
+//                <html>
+//                    <body>
+//                        <ul>
+//                           %s
+//                        </ul>
+//                    </body>
+//                </html>
+//                """.formatted(questions);
 
 //        return """
 //                <html>

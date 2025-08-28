@@ -2,6 +2,10 @@ spring:
   application:
     name: sbb
 
+  thymeleaf:
+    cache: false
+    prefix: file:src/main/resources/templates/
+
   output:
     ansi:
       enabled: always
